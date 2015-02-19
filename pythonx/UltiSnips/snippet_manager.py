@@ -443,6 +443,12 @@ class SnippetManager:
             + " <Esc>:call UltiSnips#JumpBackwards()<cr>"
         )
 
+        if vim_helper.eval('g:UltiSnipsDisablePreviewWindowInSnips') == '1':
+            # backup completeopt
+            vim_helper.command('let g:ultisnips_completopt_old = &completeopt')
+            # and remove the preview option
+            vim_helper.command('set completeopt-=preview')
+
         # Setup the autogroups.
         vim_helper.command("augroup UltiSnips")
         vim_helper.command("autocmd!")
@@ -481,6 +487,11 @@ class SnippetManager:
             vim_helper.command("augroup UltiSnips")
             vim_helper.command("autocmd!")
             vim_helper.command("augroup END")
+
+            if vim_helper.eval('g:UltiSnipsDisablePreviewWindowInSnips') == '1':
+                # restore completeopt
+                vim_helper.command('let &completeopt = g:ultisnips_completopt_old')
+
         except vim_helper.error:
             # This happens when a preview window was opened. This issues
             # CursorMoved, but not BufLeave. We have no way to unmap, until we

@@ -196,6 +196,16 @@ g:UltiSnipsEnableSnipMate
                             SnipMate snippets. Defaults to "1", so UltiSnips
                             will look for SnipMate snippets.
 
+                                                        *g:UltiSnipsDisablePreviewWindowInSnips*
+g:DisablePreviewWindowInSnips
+                            When a snip is active (i.e. we are editing the
+                            tabs and replacements), disable the preview
+                            window when this option is set to 1. Technically,
+                            this removes |preview| from |completeopt|.
+                            Enabling this setting prevents the snip becoming 
+                            inactive when using omnicomplete or other 
+                            completion engines which show the preview 
+                            window while editing a snip. Defaults to "0".
 
  3.1.2 UltiSnipsAddFiletypes                            *:UltiSnipsAddFiletypes*
 
