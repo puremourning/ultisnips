@@ -16,14 +16,16 @@ command! -bang -nargs=? -complete=customlist,UltiSnips#FileTypeComplete UltiSnip
 
 command! -nargs=1 UltiSnipsAddFiletypes :call UltiSnips#AddFiletypes(<q-args>)
 
-augroup UltiSnips_AutoTrigger
-    au!
-    au InsertCharPre * call UltiSnips#TrackChange()
-    au TextChangedI * call UltiSnips#TrackChange()
-    if exists('##TextChangedP')
-        au TextChangedP * call UltiSnips#TrackChange()
-    endif
-augroup END
+" Auto triggering is like SUPER slow and breaks workflows. I never use it as I
+" always use YCM
+" augroup UltiSnips_AutoTrigger
+"     au!
+"     au InsertCharPre * call UltiSnips#TrackChange()
+"     au TextChangedI * call UltiSnips#TrackChange()
+"     if exists('##TextChangedP')
+"         au TextChangedP * call UltiSnips#TrackChange()
+"     endif
+" augroup END
 
 call UltiSnips#map_keys#MapKeys()
 
